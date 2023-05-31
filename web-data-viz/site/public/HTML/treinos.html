@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GK Experience</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="/CSS/main.css">
     <link rel="stylesheet" href="/CSS/treino.css">
     <link rel="icon" href="/imagens/icon_47d5a8d7906b25c508d00e453bbd65d0.ico" />
@@ -50,6 +51,12 @@
             Experience preparamos para você um treino físico focado para goleiros. Já no quesito técnico e mental
             recomendamos você criar um login para acessar a pagina do forum e poder passar e receber conhecimentos com
             outros usuários do site.</h4>
+
+        <div>
+            <canvas id="myChart"></canvas>
+        </div>
+
+
     </div>
 
     <div class="divTituloTreino">
@@ -157,3 +164,25 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In qui tempore aut voluptate obcaecati
                 exercitationem nihil, aspernatur</p>
         </div>
+
+
+        <script>
+
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Futsal', 'Society-Fut7', 'Campo-Fut11'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3],
+                        borderWidth: 1,
+                    }]
+                },
+                options: {
+
+                }
+            });
+
+        </script>
