@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GK Experience</title>
+    <link rel="stylesheet" href="/CSS/main.css">
+    <link rel="stylesheet" href="/CSS/cadastro.css">
+    <link rel="icon" href="/imagens/icon_47d5a8d7906b25c508d00e453bbd65d0.ico" />
+</head>
+
+<body>
+
+
+    <!-- Criar div para o Header -->
+    <div class="divHeader">
+        <a href="/web-data-viz/site/public/index.html" class="aLogo"> <img src="/imagens/istockphoto-1340012346-612x612-removebg-preview.png"
+                alt="Logo" class="imgLogo"> </a>
+        <div class="divListaHeader">
+            <a href="/web-data-viz/site/public/HTML/treinos.html">
+                <h4 class="liAulas">Treinos</h4>
+            </a>
+            <a href="/web-data-viz/site/public/HTML/influencias.html">
+                <h4 class="liTecnicas">Influencias</h4>
+            </a>
+            <a href="/web-data-viz/site/public/HTML/sobre.html">
+                <h4 class="liSobre">Sobre</h4>
+            </a>
+            <h4>|</h4>
+            <a href="/HTML/login.html">
+                <h4 class="liLogin">Log-in</h4>
+            </a>
+            <a href="/HTML/cadastro.html">
+                <h4 class="liCadastro">Cadastro</h4>
+            </a>
+        </div>
+    </div>
+
+    <div class="divModal">
+        <div class="divCadastro">
+            <h4 id="h4Cadastro">Log-In</h4>
+            <div class="field">
+                <input type="text" required autocomplete="off" id="iptEmail">
+                <label for="iptEmail" title="Email:" data-title="Email:"></label>
+            </div>
+            <div class="field">
+                <input type="password" required autocomplete="off" id="iptSenha">
+                <label for="iptSenha" title="Senha:" data-title="Senha:"></label>
+            </div>
+            <button class="buttonCadastro" onclick="entrar()">Entrar</button> <br>
+        </div>
+    </div>
+
+    <div class="divFooter">
+        <div class="divLogoFooter">
+            <img src="/imagens/istockphoto-1340012346-612x612-removebg-preview.png" alt="luva" class="imgLogoFooter">
+        </div>
+        <div class="divColuna">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In qui tempore aut voluptate obcaecati
+                exercitationem nihil, aspernatur</p>
+        </div>
+        <div class="divColuna">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In qui tempore aut voluptate obcaecati
+                exercitationem nihil, aspernatur</p>
+        </div>
+        <div class="divColuna">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In qui tempore aut voluptate obcaecati
+                exercitationem nihil, aspernatur</p>
+        </div>
+</body>
+
+</html>
+
+<script>
+    function entrar() {
+
+        var emailVar = iptEmail.value;
+        var senhaVar = iptSenha.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "forum.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+</script>

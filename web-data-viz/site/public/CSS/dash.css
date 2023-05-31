@@ -1,0 +1,9 @@
+.dash {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    background-color: black;
+    color: goldenrod;
+    align-items: center;
+    justify-content: center;
+  }

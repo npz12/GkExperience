@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GK Experience</title>
+    <link rel="stylesheet" href="/CSS/main.css">
+    <link rel="stylesheet" href="/CSS/cadastro.css">
+    <link rel="icon" href="/imagens/icon_47d5a8d7906b25c508d00e453bbd65d0.ico" />
+</head>
+
+<body>
+
+
+    <!-- Criar div para o Header -->
+    <div class="divHeader">
+        <a href="/web-data-viz/site/public/index.html" class="aLogo"> <img src="/imagens/istockphoto-1340012346-612x612-removebg-preview.png"
+                alt="Logo" class="imgLogo"> </a>
+        <div class="divListaHeader">
+            <a href="/web-data-viz/site/public/HTML/treinos.html">
+                <h4 class="liAulas">Treinos</h4>
+            </a>
+            <a href="/web-data-viz/site/public/HTML/influencias.html">
+                <h4 class="liTecnicas">Influencias</h4>
+            </a>
+            <a href="/web-data-viz/site/public/HTML/sobre.html">
+                <h4 class="liSobre">Sobre</h4>
+            </a>
+            <h4>|</h4>
+            <a href="/HTML/login.html">
+                <h4 class="liLogin">Log-in</h4>
+            </a>
+            <a href="/HTML/cadastro.html">
+                <h4 class="liCadastro">Cadastro</h4>
+            </a>
+        </div>
+    </div>
+
+    <div class="divModal">
+        <div class="divCadastro">
+            <h4 id="h4Cadastro">Cadastro</h4>
+            <div class="field">
+                <input type="text" required autocomplete="off" id="iptNome">
+                <label for="iptNome" title="Nome:" data-title="Nome:"></label>
+            </div>
+
+            <div class="field">
+                <input type="text" required autocomplete="off" id="iptEmail">
+                <label for="iptEmail" title="Email:" data-title="Email:"></label>
+            </div>
+
+            <div class="field">
+                <input type="password" required autocomplete="off" id="iptSenha">
+                <label for="iptSenha" title="Senha:" data-title="Senha:"></label>
+            </div>
+
+            <div class="field">
+                <input type="password" required autocomplete="off" id="iptConfirmarSenha">
+                <label for="iptConfirmarSenha" title="Confirmar Senha:" data-title="Confirmar Senha:"></label>
+            </div>
+
+            <div class="field">
+                <select id="selAreaAtuacao">
+                    <option value="0"></option>
+                    <option value="1">Futsal</option>
+                    <option value="2">Society-Fut7</option>
+                    <option value="3">Campo-Fut11</option>
+                </select>
+            </div>
+            <button class="buttonCadastro" onclick="verify()">Entrar</button> <br>
+        </div>
+    </div>
+
+    <div class="divFooter">
+        <div class="divLogoFooter">
+            <img src="/imagens/istockphoto-1340012346-612x612-removebg-preview.png" alt="luva" class="imgLogoFooter">
+        </div>
+        <div class="divColuna">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In qui tempore aut voluptate obcaecati
+                exercitationem nihil, aspernatur</p>
+        </div>
+        <div class="divColuna">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In qui tempore aut voluptate obcaecati
+                exercitationem nihil, aspernatur</p>
+        </div>
+        <div class="divColuna">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In qui tempore aut voluptate obcaecati
+                exercitationem nihil, aspernatur</p>
+        </div>
+</body>
+
+</html>
+
+<script>
+
+    function verify() {
+        var nome = iptNome.value
+        var email = iptEmail.value
+        var senha = iptSenha.value
+        var confirmarSenha = iptConfirmarSenha.value
+        const rexec = /[0-9]/g;
+        const found = senha.match(rexec);
+        var erro = false
+
+        if (nome == "" || email == "" || senha == "" || confirmarSenha == "") {
+            alert("Por favor informe todos os dados.")
+            erro = true;
+        }
+
+        if (selAreaAtuacao.value == 0) {
+            alert("Por favor informe uma área de atuação.")
+            erro = true;
+        }
+
+        if (nome.length <= 2) {
+            alert("Informe um nome válido")
+            erro = true;
+        }
+
+        if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+            alert("Informe um email válido.")
+            erro = true;
+        }
+
+        if ( senha.length < 8 || found.length == 0) {
+            alert("Informe uma senha válida. (Min. 8 caracteres e um número)")
+            erro = true;
+        }
+
+        if (confirmarSenha != senha) {
+            alert("As senhas não são iguais, por favor as informe corretamente.")
+            erro = true;
+        }
+
+        if (erro == false) {
+            cadastrar()
+        }
+    }
+
+    function cadastrar() {
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = iptNome.value;
+        var emailVar = iptEmail.value;
+        var senhaVar = iptSenha.value;
+        var areaAtuacao = selAreaAtuacao.value;
+
+        // Enviando o valor da nova input
+
+        console.log(areaAtuacao)
+
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                areaAtuacaoServer: areaAtuacao
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                alert ("Cadastro realizado com sucesso! Redirecionando para tela de Login...")
+
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "2000")
+
+                limparFormulario();
+                
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            
+        });
+
+        return false;
+    }
+
+</script>

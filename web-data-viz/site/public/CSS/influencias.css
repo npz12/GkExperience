@@ -1,0 +1,121 @@
+.divTodo {
+    width: 100%;
+}
+
+.divInfluencias {
+    margin: 0;
+    width: 100%;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-image: url(/imagens/bginfluencias.png);
+    background-size: auto;
+    border-bottom: solid goldenrod 3px;
+}
+
+.divEffect {
+    display: flex;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.53);
+    align-items: center;
+    justify-content: center;
+
+}
+
+.divText {
+    display: flex;
+    color: gold;
+    font-weight: bold;
+    font-size: 35px;
+    align-items: center;
+    justify-content: center;
+}
+
+.divTextoInfluencia {
+    display: flex;
+    background-color: black;
+    width: 100%;
+    height: 300px;
+    color: white;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    border-bottom: solid goldenrod  3px;
+}
+
+.divMiniTexto {
+    display: flex;
+    background-color: black;
+    width: 90%;
+    color: white;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.divRecomendacoes{
+    display: flex;
+    background-color: black;
+    width: 100%;
+    height: 750px;
+    color: goldenrod;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 20px;
+}
+
+.divGatosVoadores{
+    display: flex;
+    background-color: black;
+    width: 80%;
+    color: white;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.divBenFoster{
+    display: flex;
+    background-color: black;
+    width: 80%;
+    color: white;
+    flex-direction: column;
+    align-items: self-end;
+    justify-content: right;
+    font-size: 20px;
+}
+
+.divGoleiroDeCapacete{
+    display: flex;
+    background-color: black;
+    width: 80%;
+    color: white;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.imgYT{
+    width: 500px;
+}
+
+.divGatosVoadores:hover {
+    transform: scale(1.1);
+    transition: all 1s;
+}
+
+.divBenFoster:hover {
+    transform: scale(1.1);
+    transition: all 1s;
+}
+
+.divGoleiroDeCapacete:hover {
+    transform: scale(1.1);
+    transition: all 1s;
+}

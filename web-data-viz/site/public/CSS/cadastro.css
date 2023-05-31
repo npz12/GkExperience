@@ -1,0 +1,115 @@
+.divCadastro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 500px;
+    border: solid 2px goldenrod;
+    border-radius: 100px;
+    background-color: rgba(0, 0, 0, 0.623);
+    color: white;
+}
+
+.iptCadastro{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 40px;
+    border-radius: 20px;
+    border: solid 2px goldenrod;
+    background-color: goldenrod;
+    color: black;
+}
+
+#h4Cadastro{
+    font-size: 30px;
+    margin: 30px;
+}
+
+.buttonCadastro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    border-radius: 40px;
+    height: 40px;
+    border: solid 2px goldenrod;
+    color: white;
+    background-color: black;
+}
+
+.buttonCadastro:hover {
+    transform: scale(1.1);
+}
+
+.iptCadastro::placeholder {
+    display: flex;
+    justify-content: center;
+    color: black;
+    align-items: center;
+}
+
+
+.label-before, .field input:focus + label::before, .field input:valid + label::before {
+    line-height: 20px;
+    font-size: 12px;
+    top: -4px;
+    background: goldenrod;
+    padding: 0 10px;
+    left: 10px;
+    border: solid 1px black;
+    border-radius: 10px;
+}
+.container {
+    width: 80%;
+    margin: 30px 10%;
+}
+.field {
+    position: relative;
+    margin-bottom: 15px;
+    
+}
+.field label::before {
+    content: attr(title);
+    position: absolute;
+    top: 0;
+    left: 20px;
+    line-height: 50px;
+    font-size: 14px;
+    color: black;
+    transition: 300ms all;
+}
+.field input {
+    width: 100%;
+    line-height: 40px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: black;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: goldenrod;
+}
+.field input:focus {
+    outline: 0;
+    border-color: black;
+}
+.field input:valid + label::before {
+    content: attr(data-title);
+}
+.field input:focus + label::before {
+    color: black;
+}
+
+/* SELECT */
+
+#selAreaAtuacao{
+    width: 200px;
+    height: 35px;
+    background-color: goldenrod;
+    border:solid 2px black;
+    border-radius: 20px;
+}

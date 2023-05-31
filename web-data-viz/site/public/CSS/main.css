@@ -1,0 +1,255 @@
+@import url(imagens/thumbbig-521477.jpeg);
+
+/* Serve só pra tirar a margem que ja vem no bglh */
+
+body {
+    margin: 0;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.aLogo {
+    display: flex;
+    height: 100%;
+    margin-left: 40px;
+}
+
+/* Montando o Header */
+.divHeader {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: black;
+    border-bottom: solid goldenrod 2px;
+    align-items: center;
+    justify-content: space-between;
+    color: whitesmoke;
+
+}
+
+.divListaHeader {
+    display: flex;
+    justify-content: right;
+    flex-direction: row;
+    gap: 80px;
+    margin-right: 40px;
+    font-size: 20px;
+}
+
+.imgLogo {
+    display: flex;
+    height: 90%;
+    margin-left: 10px;
+
+}
+
+/* Animações do Header */
+
+.imgLogo:hover {
+    transform: scale(1.1);
+    transition: all 0.5s;
+}
+
+.liAulas:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+    transition: all 0.5s;
+}
+
+.liPosicionamento:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+    transition: all 0.5s;
+}
+
+.liSobre:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+    transition: all 0.5s;
+}
+
+.liLogin:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+    transition: all 0.5s;
+}
+
+.liCadastro:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+    transition: all 0.5s;
+}
+
+.liTecnicas:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+    transition: all 1s;
+}
+
+/* Modal = Como eu chamo o meiozinho */
+/* Mexendo no modal agora */
+
+.divModal {
+    display: flex;
+    width: 100%;
+    height: 700px;
+    color: gold;
+    font: bolder;
+    font-size: 35px;
+    align-items: center;
+    justify-content: center;
+    background-image: url(https://images.mlssoccer.com/image/private/t_q-best/mls-lafc-prd/k9b0dhvmfqbaqkwl8nvi.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    border-bottom: solid goldenrod 3px;
+}
+
+.divModalDetail {
+    background-color: rgba(0, 0, 0, 0.385);
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#h4Modal {
+    display: flex;
+    align-items: right;
+    font-weight: bolder;
+}
+
+.divModal2 {
+    display: flex;
+    display: flex;
+    width: 100%;
+    height: auto;
+    gap: 20px;
+    color: aliceblue;
+    font: bolder;
+    justify-content: left;
+    font-size: 35px;
+    background: black;
+
+}
+
+.divModal3 {
+    display: flex;
+    display: flex;
+    width: 100%;
+    height: auto;
+    gap: 20px;
+    justify-content: right;
+    color: aliceblue;
+    font: bolder;
+    font-size: 35px;
+    background: black;
+
+
+}
+
+.divCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 40%;
+    height: 100px;
+    background-color: black;
+    border-bottom-right-radius: 40px;
+    border-top-right-radius: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 80px;
+    border: solid goldenrod 2px;
+}
+
+.imgPeso {
+    display: flex;
+    justify-content: center;
+    width: 10%;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.imgBola {
+    display: flex;
+    justify-content: center;
+    width: 7%;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.imgSobre {
+    display: flex;
+    justify-content: center;
+    width: 6%;
+    align-items: center;
+    margin-left: 40px;
+    margin: 10px;
+}
+
+.divCard2 {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 40%;
+    height: 100px;
+    background-color: black;
+    border-bottom-left-radius: 40px;
+    border-top-left-radius: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-right: 80px;
+    border: solid goldenrod 2px;
+    border-right: none;
+}
+
+.imgPosicionamento {
+    display: flex;
+    justify-content: center;
+    width: 10%;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.divFooter {
+    display: flex;
+    background-color: black;
+    width: 100%;
+    height: 250px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-top: solid 3px goldenrod;
+    color: whitesmoke;
+}
+
+.divColuna {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 25%;
+    border-left: solid 2px whitesmoke;
+    padding-left: 80px;
+    margin-right: 80px;
+
+}
+
+.imgLogoFooter {
+    width: 50%;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.divCard:hover {
+    text-decoration: underline;
+}
+
+.divCard2:hover {
+    text-decoration: underline;
+}

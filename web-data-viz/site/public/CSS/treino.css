@@ -1,0 +1,113 @@
+@import url(/imagens/5922b9bdb674878d72fe50ae6e47c9347429724e.jpg);
+
+.divTreino {
+    display: flex;
+    width: 100%;
+    height: 700px;
+    color: gold;
+    font: bolder;
+    font-size: 35px;
+    align-items: center;
+    justify-content: center;
+    background-image: url(/imagens/5922b9bdb674878d72fe50ae6e47c9347429724e.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    border-bottom: solid goldenrod 3px;
+}
+
+.divTreinoDetail {
+    background-color: rgba(0, 0, 0, 0.385);
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.divTxtTreinos {
+    display: flex;
+    background-color: black;
+    color: white;
+    width: 80%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+    padding: 10%;
+    font-size: 20px;
+    line-height: 30px;
+    border-bottom: solid 3px goldenrod;
+}
+
+.divTituloTreino{
+    display: flex;
+    background-color: black;
+    color: goldenrod;
+    width: 80%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+    padding: 10%;
+    font-size: 35px;
+    line-height: 30px;
+}
+
+.divEsquerdaTreinos {
+    display: flex;
+    display: flex;
+    width: 100%;
+    height: auto;
+    gap: 20px;
+    color: aliceblue;
+    font: bolder;
+    justify-content: left;
+    font-size: 20px;
+    background: black;
+
+}
+
+.divDireitaTreinos {
+    display: flex;
+    display: flex;
+    width: 100%;
+    height: auto;
+    gap: 20px;
+    justify-content: right;
+    color: aliceblue;
+    font: bolder;
+    font-size: 20px;
+    background: black;
+}
+
+.divCardTreinos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 70%;
+    height: fit-content;
+    background-color: black;
+    border-bottom-right-radius: 40px;
+    border-top-right-radius: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 80px;
+    border: solid goldenrod 2px;
+}
+
+.divCard2Treinos {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 70%;
+    height: fit-content;
+    background-color: black;
+    border-bottom-left-radius: 40px;
+    border-top-left-radius: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 80px;
+    border: solid goldenrod 2px;
+    border-right: none;
+}
