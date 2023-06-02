@@ -41,8 +41,18 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
+function usuarioqtd(req,res) {
+medidaModel.usuarioqtd().then((resposta)=>{res.status(200).json({quantidade:resposta})})
+}
+
+function chart(req,res) {
+    medidaModel.chart().then((resposta)=>{res.status(200).json({quantidade:resposta})})
+    }
+
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    usuarioqtd ,
+    chart
 
 }

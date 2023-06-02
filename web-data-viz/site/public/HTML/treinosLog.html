@@ -56,6 +56,7 @@
             <div class="graficoUsuarios">
                 <div>
                     <h4>Usuários no site</h4>
+                    <div id="usuarioCont"></div>
                 </div>
             </div>
             <div>
@@ -170,27 +171,44 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In qui tempore aut voluptate obcaecati
                 exercitationem nihil, aspernatur</p>
         </div>
+    </div>
+</body>
+
+</html>
 
 
-        <script>
+<script>
 
-            const ctx = document.getElementById('myChart');
+    const grafico = document.getElementById('myChart');
 
-            new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Futsal', 'Society-Fut7', 'Campo-Fut11'],
-                    datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3],
-                        borderWidth: 1,
-                        borderColor: 'black',
-                        backgroundColor: ['rgb(255,204,0)', 'rgb(153,101,21)', 'rgb(204,204,153)']
-                    }]
-                },
-                options: {
+    const valorGrafico = new Chart(grafico, {
+        type: 'doughnut',
+        data: {
+            labels: ['Futsal', 'Society-Fut7', 'Campo-Fut11'],
+            datasets: [{
+                label: '# of Votes',
+                data: [],
+                borderWidth: 1,
+                borderColor: 'black',
+                backgroundColor: ['rgb(255,204,0)', 'rgb(153,101,21)', 'rgb(204,204,153)']
+            }]
+        },
+        options: {
 
-                }
-            });
+        }
+    });
 
-        </script>
+    fetch("/medidas/usuarios").then(resposta => {
+        resposta.json().then((res)=> usuarioCont.innerHTML = res.quantidade[0].qtd)
+    } )
+
+    fetch("/medidas/chart").then(resposta => {
+        resposta.json().then((res)=> {
+            console.log(res)
+            valorGrafico.data.datasets[0].data = [res.quantidade[0].AreaAtuacao , res.quantidade[1].AreaAtuacao, res.quantidade[2].AreaAtuacao] 
+            valorGrafico.update()
+        })
+    })
+    
+
+</script>

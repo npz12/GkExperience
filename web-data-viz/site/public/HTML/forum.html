@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GK Experience</title>
 
-    <link rel="stylesheet" href="/CSS/dash.css">
+    <link rel="stylesheet" href="/CSS/forum.css">
     <link rel="stylesheet" href="/CSS/main.css">
 </head>
 
@@ -47,17 +47,17 @@
                 <p>Esse forum foi criado para goleiros poderem se comunicar e compartilhar informações e conhecimentos
                     sobre a posição!</p>
                 <div class="div-form">
-                    <form id="form_postagem" method="post" onsubmit="return publicar()">
+                    <form id="form_postagem" onsubmit="publicar()">
                         <label>
                             Título:
                             <br>
-                            <input name="titulo" id="titulo" maxlength="100" type="text">
+                            <input name="titulo" id="titulo" maxlength="100" type="text" class="txtarea">
                         </label>
                         <br>
                         <label>
                             Descrição (máximo de 250 caracteres):
                             <br>
-                            <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
+                            <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5" class="txtarea"></textarea>
                         </label>
                         <br>
                         <button>Enviar</button>
@@ -91,17 +91,13 @@
     </div>
     </div>
 
-
-
-
 </body>
 
 </html>
 
 <script>
 
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-    b_cpf.innerHTML = sessionStorage.CPF_USUARIO;
+    atualizarFeed()
 
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
@@ -140,7 +136,8 @@
             finalizarAguardar();
         });
 
-        return false;
+
+        atualizarFeed()
 
     }
 
@@ -163,7 +160,7 @@
 
             if (resposta.ok) {
                 window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
+                window.location = "forum.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
@@ -181,7 +178,7 @@
                 if (resposta.status == 204) {
                     var feed = document.getElementById("feed_container");
                     var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                    mensagem.innerHTML = "Está muito quieto por aqui."
                     feed.appendChild(mensagem);
                     throw "Nenhum resultado encontrado!!";
                 }
@@ -205,10 +202,10 @@
                         var btnDeletar = document.createElement("button");
 
 
-                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
-                        spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
-                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                        divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
+                        spanID.innerHTML = "<span class='color'>ID: </span> <b>" + publicacao.idAviso + "</b> <br>";
+                        spanTitulo.innerHTML = "<span class='color'>Título:</span> <b>" + publicacao.titulo + "</b> <br>";
+                        spanNome.innerHTML = "<span class='color'>Autor: </span><b>" + publicacao.nome + "</b> <br>";
+                        divDescricao.innerHTML = "<span class='color'>Descrição:</span> <b>" + publicacao.descricao + "</b> <br><br>";
                         btnEditar.innerHTML = "Editar";
                         btnDeletar.innerHTML = "Deletar";
 
@@ -238,7 +235,7 @@
                         feed.appendChild(divPublicacao);
                     }
 
-                    finalizarAguardar();
+                    
                 });
             } else {
                 throw ('Houve um erro na API!');

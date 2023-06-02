@@ -61,8 +61,19 @@ function buscarMedidasEmTempoReal(idAquario) {
     return database.executar(instrucaoSql);
 }
 
+function usuarioqtd(){
+const instrucao = `select count(*) as qtd from usuario;` 
+return database.executar(instrucao)
+}
+
+function chart(){
+    const instrucao = `select count(fkAreaAtuacao) as AreaAtuacao,fkAreaAtuacao from usuario group by fkAreaAtuacao`
+    return database.executar(instrucao)
+    }
 
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    usuarioqtd , 
+    chart
 }
