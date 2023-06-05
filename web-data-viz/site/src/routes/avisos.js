@@ -31,8 +31,8 @@ router.delete("/deletar/:idAviso", function (req, res) {
     avisoController.deletar(req, res);
 });
 
-router.verifyButton("/verifyButton/:idUsuario", function (req, res) {
-    avisoController.deletar(req, res);
+router.get("/verifyButton/:idUsuario", function (req, res) {
+    avisoController.verifyButton(req, res);
 });
 
 module.exports = router;

@@ -99,6 +99,7 @@ function verifyButton(idUsuario) {
 }
 
 
+
 module.exports = {
     listar,
     listarPorUsuario,

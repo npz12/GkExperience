@@ -33,7 +33,7 @@
             <a href="forum.html">
                 <h4 class="liCadastro">Forum</h4>
             </a>
-            <a href="../index.html">
+            <a onclick="limparSessao()"  href="../index.html">
                 <h4 class="liLogin">Log-Out</h4>
             </a>
         </div>
@@ -210,5 +210,11 @@
         })
     })
     
+    function limparSessao () {
+    sessionStorage.removeItem("NOME_USUARIO");
+    sessionStorage.removeItem("EMAIL_USUARIO");
+    sessionStorage.removeItem("ID_USUARIO");
+}
+
 
 </script>

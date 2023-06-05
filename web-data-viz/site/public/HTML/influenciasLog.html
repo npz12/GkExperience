@@ -31,7 +31,7 @@
             <a href="forum.html">
                 <h4 class="liCadastro">Forum</h4>
             </a>
-            <a href="../index.html">
+            <a onclick="limparSessao()" href="../index.html">
                 <h4 class="liLogin">Log-Out</h4>
             </a>
         </div>
@@ -53,7 +53,9 @@
                     alemão
                     Manuel Neuer ou a agilidade e confiabilidade dos grandes goleiros brasileiros como Cassio , Weverton
                     e
-                    João Paulo ou até defesas milagrosas feitas pelo belga Thibaut Courtois. Além de goleiros profissionais existe muitos goleiros que gravam conteudo de qualidade no youtube além de ser um belo passatempo recomendo assistir julgando as tomadas de decisões para aprimorar sua noção de jogo.</p>
+                    João Paulo ou até defesas milagrosas feitas pelo belga Thibaut Courtois. Além de goleiros
+                    profissionais existe muitos goleiros que gravam conteudo de qualidade no youtube além de ser um belo
+                    passatempo recomendo assistir julgando as tomadas de decisões para aprimorar sua noção de jogo.</p>
             </div>
         </div>
     </div>
@@ -61,13 +63,16 @@
     <div class="divRecomendacoes">
         <h2>Recomendações:</h2> <br> <br>
         <div class="divGatosVoadores">
-          <br>  <a href="https://www.youtube.com/@LeonardoRamalho" target="_blank"><img class="imgYT" src="/imagens/gatos voadores.png" alt=""> </a> <br>
+            <br> <a href="https://www.youtube.com/@LeonardoRamalho" target="_blank"><img class="imgYT"
+                    src="/imagens/gatos voadores.png" alt=""> </a> <br>
         </div>
         <div class="divBenFoster">
-          <br> <a href="https://www.youtube.com/@thecyclinggk" target="_blank"> <img class="imgYT" src="/imagens/ben foster.png" alt=""><br> </a>
+            <br> <a href="https://www.youtube.com/@thecyclinggk" target="_blank"> <img class="imgYT"
+                    src="/imagens/ben foster.png" alt=""><br> </a>
         </div>
         <div class="divGoleiroDeCapacete">
-           <br> <a href="https://www.youtube.com/@GoleiroDeCapacete" target="_blank"><img class="imgYT" src="/imagens/goleiro de capacete.png" alt=""> </a> <br><br>
+            <br> <a href="https://www.youtube.com/@GoleiroDeCapacete" target="_blank"><img class="imgYT"
+                    src="/imagens/goleiro de capacete.png" alt=""> </a> <br><br>
         </div>
     </div>
 
@@ -87,3 +92,16 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In qui tempore aut voluptate obcaecati
                 exercitationem nihil, aspernatur</p>
         </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function limparSessao() {
+        sessionStorage.removeItem("NOME_USUARIO");
+        sessionStorage.removeItem("EMAIL_USUARIO");
+        sessionStorage.removeItem("ID_USUARIO");
+    }
+
+</script>
