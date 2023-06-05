@@ -1,6 +1,17 @@
 @import url(imagens/thumbbig-521477.jpeg);
 
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+
+
 /* Serve só pra tirar a margem que ja vem no bglh */
+*
+{
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+} 
 
 body {
     margin: 0;
@@ -253,3 +264,4 @@ a {
 .divCard2:hover {
     text-decoration: underline;
 }
+

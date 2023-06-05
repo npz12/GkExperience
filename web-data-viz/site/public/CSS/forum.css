@@ -10,12 +10,15 @@
 
   .feed-container {
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: fit-content;
     background-color: black;
     color: white;
-    align-items: center;
-    justify-content: center;
+    align-items: right;
+    justify-content: right;
+    padding: 20px;
+ 
   }
 
   .div-results {
@@ -27,6 +30,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 50px;
+    flex-direction: column;
   }
 
   .txtarea{
@@ -46,6 +50,21 @@
     color: goldenrod;
   }
 
-#divPublicacao{
-  border-bottom: solid 2px goldenrod;
-}
+  .publicacao{
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom: solid 2px goldenrod;
+  }
+
+  .publicacao-btn-editar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    border-radius: 40px;
+    height: 40px;
+    border: solid 2px goldenrod;
+    color: white;
+    background-color: black;
+  }
+
