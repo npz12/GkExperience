@@ -241,9 +241,11 @@ a {
 
 .divColuna {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
+    height: 130px;
     width: 25%;
     border-left: solid 2px whitesmoke;
     padding-left: 80px;
@@ -265,3 +267,32 @@ a {
     text-decoration: underline;
 }
 
+.redesFooter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    margin: 20px;
+}
+
+.liFooter{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: right;
+    font-size: 15px;
+}  
+
+.divListaFooter {
+    display: flex;  
+    flex-direction: row;
+    font-size: 15px;
+}
+
+.divSup{
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+}

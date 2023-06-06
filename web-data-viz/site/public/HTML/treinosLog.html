@@ -52,23 +52,38 @@
             recomendamos você criar um login para acessar a pagina do forum e poder passar e receber conhecimentos com
             outros usuários do site.</h4>
 
-        <div class="divUsuarioContador">
-            <div class="graficoUsuarios">
+            <div class="divUsuarioContador">
+                <div class="graficoUsuarios">
+                    <div>
+                        <h4>Usuários no site:</h4>
+                        <div id="usuarioCont"></div>
+                    </div>
+                </div>
                 <div>
-                    <h4>Usuários no site:</h4>
-                    <div id="usuarioCont"></div>
+                    <canvas id="myChart"></canvas>
                 </div>
             </div>
-            <div>
-                <canvas id="myChart"></canvas>
-            </div>
+    
+                <h4 class="percent">Areas de atuação</h4>
+                <div class="divPercent">
+                    <div>
+                        <h4>Futsal:</h4>
+                        <div class="percent" id="futsalPercent"></div>
+                    </div>
+                    <div>
+                        <h4>Society-Fut7:</h4>
+                        <div class="percent" id="societyPercent"></div>
+                    </div>
+                    <div>
+                        <h4>Campo-Fut11:</h4>
+                        <div class="percent" id="campoPercent"></div>
+                    </div>
+                </div>
         </div>
-    </div>
-
-
-    <div class="divTituloTreino">
-        <h4 id="h4Treino">Recomendação de Treino</h4>
-    </div>
+    
+        <div class="divTituloTreino">
+            <h4 class="percent" id="h4Treino">Recomendação de Treino</h4>
+        </div>
 
 
     <div class="divEsquerdaTreinos">
@@ -157,19 +172,68 @@
 
     <div class="divFooter">
         <div class="divLogoFooter">
-            <img src="/imagens/istockphoto-1340012346-612x612-removebg-preview.png" alt="luva" class="imgLogoFooter">
+            <a href="./indexLog.html">
+                <img src="/imagens/istockphoto-1340012346-612x612-removebg-preview.png" alt="luva"
+                    class="imgLogoFooter">
+            </a>
         </div>
         <div class="divColuna">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In qui tempore aut voluptate obcaecati
-                exercitationem nihil, aspernatur</p>
+            <div class="divListaFooter">
+                <div class="divSup">
+                    <a href="/HTML/treinosLog.html">
+                        <h4 class="liAulas">Treinos</h4>
+                    </a>
+                    <a href="/HTML/influenciasLog.html">
+                        <h4 class="liTecnicas">Influencias</h4>
+                    </a>
+                    <a href="/HTML/sobreLog.html">
+                        <h4 class="liSobre">Sobre</h4>
+                    </a>
+                </div>
+                <div class="divSup">
+                    <a href="/HTML/forum.html">
+                        <h4 class="liLogin">Fórum</h4>
+                    </a>
+                    <a onclick="limparSessao()" href="../index.html">
+                        <h4 class="liCadastro">Log-Out</h4>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="divColuna">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In qui tempore aut voluptate obcaecati
-                exercitationem nihil, aspernatur</p>
+            <li class="liFooter">
+                <div>
+                    <ul>Telefone:</ul>
+                    <ul>944722626</ul>
+                </div>
+                <div>
+                    <ul>Email:</ul>
+                    <ul>nicopz2005@gmail.com</ul>
+                </div>
+            </li>
         </div>
         <div class="divColuna">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In qui tempore aut voluptate obcaecati
-                exercitationem nihil, aspernatur</p>
+            <div class="divListaFooter">
+                <div class="divSup">
+                    <div>
+                        <a href="https://instagram.com/npzanardi_?igshid=OGQ5ZDc2ODk2ZA==" target="_blank"> <img
+                                class="redesFooter" src="../imagens/606_instagram-removebg-preview.png" alt=""></a>
+                    </div>
+
+                    <div>
+                        <a href="https://github.com/npz12" target="_blank"><img class="redesFooter"
+                                src="../imagens/symbole-github-violet-removebg-preview.png" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="divSup">
+                    <div>
+                        <a href="https://www.linkedin.com/in/nicolas-zanardi-35938824b/" target="_blank"><img
+                                class="redesFooter" src="../imagens/linkedin.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
@@ -179,41 +243,52 @@
 
 <script>
 
-    const grafico = document.getElementById('myChart');
+const grafico = document.getElementById('myChart');
 
-    const valorGrafico = new Chart(grafico, {
-        type: 'doughnut',
-        data: {
-            labels: ['Futsal', 'Society-Fut7', 'Campo-Fut11'],
-            datasets: [{
-                label: '# of Votes',
-                data: [],
-                borderWidth: 1,
-                borderColor: 'black',
-                backgroundColor: ['rgb(255,204,0)', 'rgb(153,101,21)', 'rgb(204,204,153)']
-            }]
-        },
-        options: {
+const valorGrafico = new Chart(grafico, {
+    type: 'doughnut',
+    data: {
+        labels: ['Futsal', 'Society-Fut7', 'Campo-Fut11'],
+        datasets: [{
+            label: '# of Votes',
+            data: [],
+            borderWidth: 1,
+            borderColor: 'black',
+            backgroundColor: ['rgb(255,204,0)', 'rgb(153,101,21)', 'rgb(204,204,153)']
+        }]
+    },
+    options: {
 
-        }
-    });
+    }
+});
+
+var qtdTotal = 1;
+    var qtdIndividual = 1; 
 
     fetch("/medidas/usuarios").then(resposta => {
-        resposta.json().then((res)=> usuarioCont.innerHTML = res.quantidade[0].qtd)
-    } )
+            resposta.json().then((res) =>{
+             usuarioCont.innerHTML = res.quantidade[0].qtd;
+             qtdTotal = Number(res.quantidade[0].qtd)
+             console.log(qtdTotal)
+             print()
+            })
+        })
+        
+function print() {
 
     fetch("/medidas/chart").then(resposta => {
-        resposta.json().then((res)=> {
+        resposta.json().then((res) => {
             console.log(res)
-            valorGrafico.data.datasets[0].data = [res.quantidade[0].AreaAtuacao , res.quantidade[1].AreaAtuacao, res.quantidade[2].AreaAtuacao] 
+            qtdIndividual = [res.quantidade[0].AreaAtuacao, res.quantidade[1].AreaAtuacao, res.quantidade[2].AreaAtuacao]
+            console.log(qtdIndividual)
+            console.log(qtdTotal)
+            valorGrafico.data.datasets[0].data = qtdIndividual
             valorGrafico.update()
+            futsalPercent.innerHTML = `${Math.floor(qtdIndividual[0] / qtdTotal * 100)}%`
+            societyPercent.innerHTML = `${Math.floor(qtdIndividual[1] / qtdTotal * 100)}%`
+            campoPercent.innerHTML = `${Math.floor(qtdIndividual[2] / qtdTotal * 100)}%`
         })
     })
-    
-    function limparSessao () {
-    sessionStorage.removeItem("NOME_USUARIO");
-    sessionStorage.removeItem("EMAIL_USUARIO");
-    sessionStorage.removeItem("ID_USUARIO");
 }
 
 
