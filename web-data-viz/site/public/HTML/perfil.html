@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GK Experience</title>
+
+    <link rel="stylesheet" href="../CSS/forum.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/perfil.css">
+</head>
+
+<body>
+
+
+    <!-- Criar div para o Header -->
+    <div class="divHeader">
+        <a href=".indexLog.html" class="aLogo"> <img
+                src="../imagens/istockphoto-1340012346-612x612-removebg-preview.png" alt="Logo" class="imgLogo"> </a>
+        <div class="divListaHeader">
+            <a href="treinosLog.html">
+                <h4 class="liAulas">Treinos</h4>
+            </a>
+            <a href="influenciasLog.html">
+                <h4 class="liTecnicas">Influencias</h4>
+            </a>
+            <a href="sobreLog.html">
+                <h4 class="liSobre">Sobre</h4>
+            </a>
+            <h4>|</h4>
+            <a href="forum.html">
+                <h4 class="liCadastro">Forum</h4>
+            </a>
+            <a onclick="limparSessao()" href="../index.html">
+                <h4 class="liLogin">Log-Out</h4>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="divBackgroundPerfil">
+        <!-- Criar div para o Menu Hamburguer -->
+        <div class="container">
+            <div class="hamburguer-menu" onclick="toggle(this)">
+                <span class="line first-line"></span>
+                <span class="line second-line"></span>
+            </div>
+            <div class="menu-expanded">
+                <ul>
+                    <li><a href="#">Olá...</a></li>
+                    <li><a href="#">Goleiro de []</a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#">Quiz</a></li>
+                    <li><a href="#">Fórum</a></li>
+                    <li><a href="#">Sair</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="divBoxGeral">
+            <div class="divAux">
+                <div class="divBox1">
+                    <h2>Trilha de desempenho</h2>
+                </div>
+                <div class="divBox2">
+                    <h2>Ranking</h2>
+                </div>
+            </div>
+            <div class="divBox3">
+                <h2>Seus comentarios</h2>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="divFooter">
+        <div class="divLogoFooter">
+            <a href="./indexLog.html">
+                <img src="/imagens/istockphoto-1340012346-612x612-removebg-preview.png" alt="luva"
+                    class="imgLogoFooter">
+            </a>
+        </div>
+        <div class="divColuna">
+            <div class="divListaFooter">
+                <div class="divSup">
+                    <a href="/HTML/treinosLog.html">
+                        <h4 class="liAulas">Treinos</h4>
+                    </a>
+                    <a href="/HTML/influenciasLog.html">
+                        <h4 class="liTecnicas">Influencias</h4>
+                    </a>
+                    <a href="/HTML/sobreLog.html">
+                        <h4 class="liSobre">Sobre</h4>
+                    </a>
+                </div>
+                <div class="divSup">
+                    <a href="/HTML/forum.html">
+                        <h4 class="liLogin">Fórum</h4>
+                    </a>
+                    <a onclick="limparSessao()" href="../index.html">
+                        <h4 class="liCadastro">Log-Out</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="divColuna">
+            <li class="liFooter">
+                <div>
+                    <ul>Telefone:</ul>
+                    <ul>944722626</ul>
+                </div>
+                <div>
+                    <ul>Email:</ul>
+                    <ul>nicopz2005@gmail.com</ul>
+                </div>
+            </li>
+        </div>
+        <div class="divColuna">
+            <div class="divListaFooter">
+                <div class="divSup">
+                    <div>
+                        <a href="https://instagram.com/npzanardi_?igshid=OGQ5ZDc2ODk2ZA==" target="_blank"> <img
+                                class="redesFooter" src="../imagens/606_instagram-removebg-preview.png" alt=""></a>
+                    </div>
+
+                    <div>
+                        <a href="https://github.com/npz12" target="_blank"><img class="redesFooter"
+                                src="../imagens/symbole-github-violet-removebg-preview.png" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="divSup">
+                    <div>
+                        <a href="https://www.linkedin.com/in/nicolas-zanardi-35938824b/" target="_blank"><img
+                                class="redesFooter" src="../imagens/linkedin.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggle(element) {
+            element.classList.toggle("change");
+        }
+    </script>
