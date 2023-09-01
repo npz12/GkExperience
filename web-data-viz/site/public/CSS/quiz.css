@@ -1,0 +1,25 @@
+.divQuiz {
+    display: flex;
+    border: solid 3px goldenrod;
+    border-radius: 40px;
+    margin: 100px;
+    width: 70%;
+    height: 600px;
+    margin-bottom: 200px;
+    background-color: rgba(240, 248, 255, 0.189);
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+#btnQuiz {
+    background-color: rgb(218, 165, 32);
+    color: black;
+    font-weight: bold;
+    border-radius: 40px;
+    border: solid 3px black;
+    font-size: 28px;
+    width: 300px;
+    height: 100px;
+    
+}
