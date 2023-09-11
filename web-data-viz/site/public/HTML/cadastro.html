@@ -146,6 +146,8 @@
 <script>
 
     function verify() {
+
+        // Variaveis para cadastrar novo usuario;
         var nome = iptNome.value
         var email = iptEmail.value
         var senha = iptSenha.value
@@ -154,6 +156,8 @@
         const found = senha.match(rexec);
         var erro = false
 
+
+        // Condicionais para verificar se os dados do cadastro cumprem com os requisitos
         if (nome == "" || email == "" || senha == "" || confirmarSenha == "") {
             alert("Por favor informe todos os dados.")
             erro = true;
@@ -189,6 +193,8 @@
         }
     }
 
+
+    // Função para realizar o cadastro;
     function cadastrar() {
 
         //Recupere o valor da nova input pelo nome do id

@@ -276,14 +276,17 @@
         
 function print() {
 
+    
     fetch("/medidas/chart").then(resposta => {
+        // Vetores para pegar dados no banco para exibir no ChartJS;
         resposta.json().then((res) => {
             console.log(res)
             qtdIndividual = [res.quantidade[0].AreaAtuacao, res.quantidade[1].AreaAtuacao, res.quantidade[2].AreaAtuacao]
             console.log(qtdIndividual)
             console.log(qtdTotal)
-            valorGrafico.data.datasets[0].data = qtdIndividual
+            valorGrafico.data.datasets[0].data = qtdIndividual       
             valorGrafico.update()
+            // Operação matematica para exibir em porcentagem os valores de qual area de atuação é a mais popular
             futsalPercent.innerHTML = `${Math.floor(qtdIndividual[0] / qtdTotal * 100)}%`
             societyPercent.innerHTML = `${Math.floor(qtdIndividual[1] / qtdTotal * 100)}%`
             campoPercent.innerHTML = `${Math.floor(qtdIndividual[2] / qtdTotal * 100)}%`
