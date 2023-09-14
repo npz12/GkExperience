@@ -49,14 +49,13 @@
                 <span class="line second-line"></span>
             </div>
             <div class="menu-expanded">
-                <ul>
-                    <li><a href="#">Olá...</a></li>
-                    <li><a href="#">Goleiro de []</a></li>
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
-                    <li><a href="quiz.html">Quiz</a></li>
-                    <li><a href="forum.html">Fórum</a></li>
-                    <li><a onclick="limparSessao()" href="../index.html">Sair</a></li>
+                <ul class="ulMenu">
+                    <li class="liMenu"><a href="#">Olá: </style><span id="usuarioExibir"></span></a></li>
+                    <li class="liMenu"><a href="#">Email: <span id="emailExibir"></span></a></li>
+                    <li class="liMenu"><a href="#"></a></li><br>
+                    <li class="liMenu"><a href="quiz.html">Quiz</a></li>
+                    <li class="liMenu"><a href="forum.html">Fórum</a></li>
+                    <li class="liMenu"><a onclick="limparSessao()" href="../index.html">Sair</a></li>
                 </ul>
             </div>
         </div>
@@ -71,6 +70,11 @@
             </div>
             <div class="divBox3">
                 <h2>Seus comentarios</h2>
+                <div class="div-results">
+                    <h2 id="mensagemComentario">Você não tem nenhum comentario.</h2>
+                    <div id="feed_container" class="feed-container">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -145,7 +149,136 @@
     </div>
 
     <script>
+
+        function deletar(idAviso) {
+
+
+            console.log("Criar função de apagar post escolhido - ID" + idAviso);
+            fetch(`/avisos/deletar/${idAviso}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(function (resposta) {
+
+                if (resposta.ok) {
+                    window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                    window.location = "perfil.html"
+                } else if (resposta.status == 404) {
+                    window.alert("Deu 404!");
+                } else {
+                    throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+        }
+
+
+        atualizarFeed();
+
+        usuarioExibir.innerHTML = sessionStorage.NOME_USUARIO;
+        emailExibir.innerHTML = sessionStorage.EMAIL_USUARIO;
+
+
         function toggle(element) {
             element.classList.toggle("change");
+        }
+
+        function atualizarFeed() {
+            exibirComentario = sessionStorage.ID_USUARIO
+            //aguardar();
+            fetch("/avisos/listar").then(function (resposta) {
+                if (resposta.ok) {
+                    if (resposta.status == 204) {
+                        var feed = document.getElementById("feed_container");
+                        var mensagem = document.createElement("span");
+                        mensagem.innerHTML = "Está muito quieto por aqui..."
+                        feed.appendChild(mensagem);
+                        throw "Nenhum resultado encontrado!!";
+                    }
+
+                    resposta.json().then(function (resposta) {
+                        console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                        var feed = document.getElementById("feed_container");
+                        feed.innerHTML = "";
+                        // Laço de repetição para mostrar os comentarios em ordem de mais recente no forum;
+                        for (let i = resposta.length - 1; i >= 0; i--) {
+                            var publicacao = resposta[i];
+
+
+                            if (publicacao.fk_usuario == exibirComentario) {
+                                // criando e manipulando elementos do HTML via JavaScript
+                                var divPublicacao = document.createElement("div");
+                                var spanID = document.createElement("span");
+                                var spanTitulo = document.createElement("span");
+                                var spanNome = document.createElement("span");
+                                var divDescricao = document.createElement("div");
+                                var divButtons = document.createElement("div");
+                                var btnDeletar = document.createElement("button");
+
+                                mensagemComentario.style.display = "none";
+
+                                spanTitulo.innerHTML = "<span class='color'>Título:</span> <b>" + publicacao.titulo + "</b> <br>";
+                                spanNome.innerHTML = "<span class='color'>Autor: </span><b>" + publicacao.nome + "</b> <br>";
+                                divDescricao.innerHTML = "<span class='color'>Descrição:</span> <b>" + publicacao.descricao + "</b> <br><br>";
+                                btnDeletar.innerHTML = "Deletar";
+                            }
+
+
+
+                            divPublicacao.className = "publicacao";
+                            spanTitulo.id = "inputNumero" + publicacao.idAviso;
+                            spanNome.className = "publicacao-nome";
+                            spanTitulo.className = "publicacao-titulo";
+                            divDescricao.className = "publicacao-descricao";
+
+                            divButtons.className = "div-buttons"
+
+                            btnDeletar.className = "publicacao-btn-editar"
+                            btnDeletar.id = "btnDeletar" + publicacao.idAviso;
+                            btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+
+                            divPublicacao.appendChild(spanID);
+                            divPublicacao.appendChild(spanNome);
+                            divPublicacao.appendChild(spanTitulo);
+                            divPublicacao.appendChild(divDescricao);
+                            divPublicacao.appendChild(divButtons);
+                            divButtons.appendChild(btnDeletar);
+                            feed.appendChild(divPublicacao);
+                        }
+
+
+                    });
+                } else {
+                    throw ('Houve um erro na API!');
+                }
+            }).catch(function (resposta) {
+                console.error(resposta);
+                finalizarAguardar();
+            });
+
+        }
+
+        function testar() {
+            aguardar();
+
+            var formulario = new URLSearchParams(new FormData(document.getElementById("form_postagem")));
+
+            var divResultado = document.getElementById("div_feed");
+
+            divResultado.appendChild(document.createTextNode(formulario.get("descricao")));
+            divResultado.innerHTML = formulario.get("descricao");
+
+            finalizarAguardar();
+
+            return false;
+        }
+
+        function limparSessao() {
+            sessionStorage.removeItem("NOME_USUARIO");
+            sessionStorage.removeItem("EMAIL_USUARIO");
+            sessionStorage.removeItem("ID_USUARIO");
         }
     </script>

@@ -32,3 +32,24 @@ CREATE TABLE aviso (
 	fk_usuario INT,
 	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
 );
+
+CREATE TABLE quizAcertos (
+	idQuizAcertos INT PRIMARY KEY AUTO_INCREMENT,
+	pontuacao int,
+	diaRealizado date, 
+	fk_usuario INT,
+	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+);
+
+CREATE VIEW usuariosAvisos AS
+SELECT
+  usuario.nome,
+  areaAtuacao.areaAtuacao,
+  aviso.titulo,
+  aviso.descricao
+FROM
+  usuario
+  INNER JOIN aviso ON usuario.id = aviso.fk_usuario
+  INNER JOIN areaAtuacao ON usuario.fkAreaAtuacao = areaAtuacao.id;
+
+  SELECT * FROM usuariosAvisos;

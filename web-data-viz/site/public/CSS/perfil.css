@@ -133,6 +133,9 @@ a {
 
 .divBox3 {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     height: 460px;
     width: 87%;
     border: solid 2px goldenrod;
@@ -141,6 +144,47 @@ a {
     border-radius: 30px;
     justify-content: center;
     color: goldenrod;
+    
 }
 
+.ulMenu {
+  list-style-type: none;
+}
+.liMenu {
+  color: goldenrod;
+  font-size: 20px;
+}
 
+.div-results{
+  display: block;
+  width: 90%;
+  height: 300px;
+  background-color: black;
+  color: goldenrod;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+  flex-direction: column; 
+  overflow-y: scroll;
+}
+
+.feed-container{
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  height: fit-content;
+  background-color: black;
+  color: white;
+  align-items: right;
+  justify-content: right;
+  padding: 20px;
+
+}
+
+#mensagemComentario{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+}

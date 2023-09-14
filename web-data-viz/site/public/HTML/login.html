@@ -164,9 +164,10 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.AREA_ATUACAO = json.area;
 
                     setTimeout(function () {
-                        window.location = "forum.html";
+                        window.location = "perfil.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -190,5 +191,6 @@
 
     function sumirMensagem() {
         alert("Login ou senha incorretos.")
+        return;
     }
 </script>
