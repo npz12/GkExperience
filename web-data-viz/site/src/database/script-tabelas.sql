@@ -53,3 +53,10 @@ FROM
   INNER JOIN areaAtuacao ON usuario.fkAreaAtuacao = areaAtuacao.id;
 
   SELECT * FROM usuariosAvisos;
+
+  CREATE VIEW RankingAcertos AS
+SELECT u.nome AS NomeUsuario, COUNT(qa.idQuizAcertos) AS QuantidadeAcertos
+FROM usuario u
+LEFT JOIN quizAcertos qa ON u.id = qa.fk_usuario
+GROUP BY u.id
+ORDER BY QuantidadeAcertos DESC;
