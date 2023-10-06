@@ -93,6 +93,26 @@ function publicar(req, res) {
     }
 }
 
+function postarQuiz(req, res) {
+    var acertos = req.body.acertosServer;
+    var idUsuario = req.body.idUsuarioServer;
+
+    avisoModel.postarQuiz(acertos, idUsuario)
+        .then(
+            function (resultado) {
+                console.log("cheguei na model")
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 function editar(req, res) {
     var novaDescricao = req.body.descricao;
     var idAviso = req.params.idAviso;
@@ -162,5 +182,6 @@ module.exports = {
     publicar,
     editar,
     deletar,
-    verifyButton
+    verifyButton,
+    postarQuiz
 }

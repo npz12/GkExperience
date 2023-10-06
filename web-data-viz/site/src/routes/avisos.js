@@ -23,6 +23,10 @@ router.post("/publicar/:idUsuario", function (req, res) {
     avisoController.publicar(req, res);
 });
 
+router.post("/postarQuiz", function (req, res) {
+    avisoController.postarQuiz(req, res);
+});
+
 router.put("/editar/:idAviso", function (req, res) {
     avisoController.editar(req, res);
 });
@@ -34,5 +38,7 @@ router.delete("/deletar/:idAviso", function (req, res) {
 router.get("/verifyButton/:idUsuario", function (req, res) {
     avisoController.verifyButton(req, res);
 });
+
+
 
 module.exports = router;

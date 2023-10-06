@@ -54,9 +54,13 @@ FROM
 
   SELECT * FROM usuariosAvisos;
 
-  CREATE VIEW RankingAcertos AS
-SELECT u.nome AS NomeUsuario, COUNT(qa.idQuizAcertos) AS QuantidadeAcertos
-FROM usuario u
-LEFT JOIN quizAcertos qa ON u.id = qa.fk_usuario
-GROUP BY u.id
-ORDER BY QuantidadeAcertos DESC;
+CREATE VIEW rankingAcertos AS
+SELECT
+  usuario.nome,
+  quizAcertos.pontuacao,
+  quizAcertos.diaRealizado
+FROM
+  quizAcertos
+INNER JOIN usuario ON quizAcertos.fk_usuario = usuario.id
+ORDER BY
+  quizAcertos.pontuacao DESC;
