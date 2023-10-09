@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../CSS/perfil.css">
 </head>
 
-<body>
+<body onload="print()">
 
 
     <!-- Criar div para o Header -->
@@ -63,9 +63,9 @@
             <div class="divAux">
                 <div class="divBox1">
                     <h2>Trilha de desempenho</h2>
-                    <div>
+                    <div class="chartJS">
                         <canvas id="myChart"></canvas>
-                      </div>
+                    </div>
                 </div>
                 <div class="divBox2">
                     <h2>Ranking</h2>
@@ -151,7 +151,75 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        const grafico = document.getElementById('myChart');
+
+        const valorGrafico = new Chart(grafico, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Pontuação',
+                    data: [],
+                    borderWidth: 1,
+                    borderColor: 'goldenrod',
+                    backgroundColor: ['rgb(255,204,0)']
+                }]
+            },
+            options: {
+
+            }
+        });
+
+        function print() {
+            idUsuario = sessionStorage.ID_USUARIO
+
+
+            fetch("/medidas/chart2", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idUsuarioServer: idUsuario
+                }),
+            })
+                .then(function (resposta) {
+                    console.log(resposta);
+                    resposta.json().then(function (resposta){console.log(resposta)
+                    
+                    var grafico = [resposta.resposta[4].pontuacao , resposta.resposta[3].pontuacao , resposta.resposta[2].pontuacao ,  resposta.resposta[1].pontuacao , resposta.resposta[0].pontuacao]
+                    var labels =  [ new Date(resposta.resposta[4].diaRealizado) , new Date(resposta.resposta[3].diaRealizado) ,  new Date(resposta.resposta[2].diaRealizado), new Date(resposta.resposta[1].diaRealizado) , new Date(resposta.resposta[0].diaRealizado)]
+                    
+                    for (let index = 0; index < labels.length; index++) {
+                        labels[index] = labels[index].getDate() + "/" + (Number(labels[index].getMonth()) + 1)  + "/" + labels[index].getFullYear()
+                        
+                    }
+
+                    console.log(grafico);
+                    console.log(labels);
+                    valorGrafico.data.labels = labels;  
+                    valorGrafico.data.datasets[0].data = grafico;       
+                    valorGrafico.update()
+                })
+                });
+
+
+            // fetch("/medidas/chart2").then(res => {
+            //     // Vetores para pegar dados no banco para exibir no ChartJS;
+            //     resposta.json().then((res) => {
+            //         console.log(res)
+
+            // //         // qtdIndividual = [res.quantidade[0].AreaAtuacao, res.quantidade[1].AreaAtuacao, res.quantidade[2].AreaAtuacao]
+            // //         // console.log(qtdIndividual)
+            // //         // console.log(qtdTotal)
+            // //         // valorGrafico.data.datasets[0].data = qtdIndividual       
+            // //         // valorGrafico.update()
+            //     })
+            // })
+        }
+
 
         function deletar(idAviso) {
 
@@ -285,5 +353,4 @@
             sessionStorage.removeItem("ID_USUARIO");
         }
 
-       
     </script>

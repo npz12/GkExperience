@@ -19,4 +19,8 @@ router.get("/chart" , function (req, res) {
     medidaController.chart(req, res);
 })
 
+router.post("/chart2" , function (req, res) {
+    medidaController.chart2(req, res);
+})
+
 module.exports = router;

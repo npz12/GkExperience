@@ -136,7 +136,8 @@
             return false;
         }
         else {
-            setInterval(sumirMensagem, 5000)
+            setTimeout(sumirMensagem, 3000)
+            
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -191,6 +192,5 @@
 
     function sumirMensagem() {
         alert("Login ou senha incorretos.")
-        return;
     }
 </script>

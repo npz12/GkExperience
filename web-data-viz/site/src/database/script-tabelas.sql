@@ -64,3 +64,5 @@ FROM
 INNER JOIN usuario ON quizAcertos.fk_usuario = usuario.id
 ORDER BY
   quizAcertos.pontuacao DESC;
+
+

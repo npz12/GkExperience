@@ -41,18 +41,23 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
-function usuarioqtd(req,res) {
-medidaModel.usuarioqtd().then((resposta)=>{res.status(200).json({quantidade:resposta})})
+function usuarioqtd(req, res) {
+    medidaModel.usuarioqtd().then((resposta) => { res.status(200).json({ quantidade: resposta }) })
 }
 
-function chart(req,res) {
-    medidaModel.chart().then((resposta)=>{res.status(200).json({quantidade:resposta})})
-    }
+function chart(req, res) {
+    medidaModel.chart().then((resposta) => { res.status(200).json({ quantidade: resposta }) })
+}
+
+function chart2(req, res) {
+    var idUsuario = req.body.idUsuarioServer;
+    medidaModel.chart2(idUsuario).then((resposta) => { res.status(200).json({resposta}) })
+}
 
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
-    usuarioqtd ,
-    chart
-
+    usuarioqtd,
+    chart,
+    chart2
 }

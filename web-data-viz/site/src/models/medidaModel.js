@@ -61,19 +61,25 @@ function buscarMedidasEmTempoReal(idAquario) {
     return database.executar(instrucaoSql);
 }
 
-function usuarioqtd(){
-const instrucao = `select count(*) as qtd from usuario;` 
-return database.executar(instrucao)
+function usuarioqtd() {
+    const instrucao = `select count(*) as qtd from usuario;`
+    return database.executar(instrucao)
 }
 
-function chart(){
+function chart() {
     const instrucao = `select count(fkAreaAtuacao) as AreaAtuacao,fkAreaAtuacao from usuario group by fkAreaAtuacao`
     return database.executar(instrucao)
-    }
+}
+
+function chart2(idUsuario) {
+    const instrucao = `select pontuacao , diaRealizado from quizAcertos where fk_usuario = ${idUsuario} order by diaRealizado desc limit 5;`
+    return database.executar(instrucao)
+}
 
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
-    usuarioqtd , 
-    chart
+    usuarioqtd,
+    chart,
+    chart2
 }
