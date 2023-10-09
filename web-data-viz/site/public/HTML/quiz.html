@@ -400,11 +400,7 @@
                     window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
                     window.location = "/HTML/forum.html";
                 }
-                // } else if (resposta.status == 404) {
-                //     window.alert("Deu 404!");
-                // } else {
-                //     throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-                // }
+
             }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
