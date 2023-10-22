@@ -41,6 +41,14 @@ CREATE TABLE quizAcertos (
 	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
 );
 
+CREATE TABLE personalBest (
+	idPb INT PRIMARY KEY AUTO_INCREMENT,
+	fk_idQuizAcertos INT,
+	fk_usuarioQuizAcertos INT,
+	FOREIGN KEY (fk_idQuizAcertos) REFERENCES quizAcertos(idQuizAcertos),
+	FOREIGN KEY (fk_usuarioQuizAcertos) REFERENCES quizAcertos(fk_usuario)
+);
+
 CREATE VIEW usuariosAvisos AS
 SELECT
   usuario.nome,
@@ -56,13 +64,19 @@ FROM
 
 CREATE VIEW rankingAcertos AS
 SELECT
-  usuario.nome,
-  quizAcertos.pontuacao,
-  quizAcertos.diaRealizado
+  usuario.nome AS nome_usuario,
+  quizAcertos.pontuacao AS pontuacao,
+  quizAcertos.diaRealizado AS dia_realizado
 FROM
   quizAcertos
-INNER JOIN usuario ON quizAcertos.fk_usuario = usuario.id
+INNER JOIN
+  personalBest
+ON
+  quizAcertos.idQuizAcertos = personalBest.fk_idQuizAcertos
+INNER JOIN
+  usuario
+ON
+  quizAcertos.fk_usuario = usuario.id
 ORDER BY
-  quizAcertos.pontuacao DESC;
-
+  pontuacao DESC;
 

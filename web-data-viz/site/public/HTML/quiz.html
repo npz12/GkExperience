@@ -50,8 +50,8 @@
             </div>
             <div class="menu-expanded">
                 <ul class="ulMenu">
-                    <li class="liMenu"><a href="#">Olá: </style><span id="usuarioExibir"></span></a></li>
-                    <li class="liMenu"><a href="#">Email: <span id="emailExibir"></span></a></li>
+                    <li class="liMenu"><a href="#"><span style="color: goldenrod;">Olá:</span> </style><span id="usuarioExibir"></span></a></li>
+                    <li class="liMenu"><a href="#"><span style="color: goldenrod;">Email:</span> <span id="emailExibir"></span></a></li>
                     <li class="liMenu"><a href="#"></a></li><br>
                     <li class="liMenu"><a href="quiz.html">Quiz</a></li>
                     <li class="liMenu"><a href="forum.html">Fórum</a></li>
@@ -289,6 +289,9 @@
 
     <script>
 
+        usuarioExibir.innerHTML = sessionStorage.NOME_USUARIO;
+        emailExibir.innerHTML = sessionStorage.EMAIL_USUARIO;
+
         var acertos;
 
         q1.style.display = "none";
@@ -381,9 +384,9 @@
             var idUsuario = sessionStorage.ID_USUARIO;
 
             var corpo = {
-            acertosServer: acertos ,
-            idUsuarioServer: idUsuario
-        }
+                acertosServer: acertos,
+                idUsuarioServer: idUsuario
+            }
 
             fetch(`/avisos/postarQuiz`, {
                 method: "post",
@@ -398,12 +401,12 @@
 
                 if (resposta.ok) {
                     window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                    window.location = "/HTML/forum.html";
+                    window.location = "/HTML/perfil.html";
                 }
 
             }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
-         }
+        }
 
     </script>

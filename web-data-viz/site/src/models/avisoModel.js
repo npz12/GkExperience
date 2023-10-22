@@ -76,6 +76,9 @@ function postarQuiz(acertos, idUsuario) {
     var instrucao = `
         INSERT INTO quizAcertos (pontuacao, diaRealizado, fk_usuario) VALUES (${acertos}, CURDATE(), ${idUsuario});
     `;
+
+    
+
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }

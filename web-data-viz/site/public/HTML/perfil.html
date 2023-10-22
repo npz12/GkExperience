@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../imagens/icon_47d5a8d7906b25c508d00e453bbd65d0.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../CSS/perfil.css">
 </head>
 
-<body onload="print()">
+<body onload="print() , atualizarFeed() , rankingAcertos()">
 
 
     <!-- Criar div para o Header -->
@@ -50,8 +50,10 @@
             </div>
             <div class="menu-expanded">
                 <ul class="ulMenu">
-                    <li class="liMenu"><a href="#">Olá: </style><span id="usuarioExibir"></span></a></li>
-                    <li class="liMenu"><a href="#">Email: <span id="emailExibir"></span></a></li>
+                    <li class="liMenu"><a href="#"><span style="color: goldenrod;">Olá:</span> </style><span
+                                id="usuarioExibir"></span></a></li>
+                    <li class="liMenu"><a href="#"><span style="color: goldenrod;">Email:</span> <span
+                                id="emailExibir"></span></a></li>
                     <li class="liMenu"><a href="#"></a></li><br>
                     <li class="liMenu"><a href="quiz.html">Quiz</a></li>
                     <li class="liMenu"><a href="forum.html">Fórum</a></li>
@@ -69,6 +71,12 @@
                 </div>
                 <div class="divBox2">
                     <h2>Ranking</h2>
+                    <div class="divTabela">
+                        <div id="divRankingAcertosPosicao"></div>
+                        <div id="divRankingAcertosNome"></div>
+                        <div id="divRankingAcertosPontuacao"></div>
+                        <div id="divRankingAcertosData"></div>
+                    </div>
                 </div>
             </div>
             <div class="divBox3">
@@ -187,37 +195,30 @@
             })
                 .then(function (resposta) {
                     console.log(resposta);
-                    resposta.json().then(function (resposta){console.log(resposta)
-                    
-                    var grafico = [resposta.resposta[4].pontuacao , resposta.resposta[3].pontuacao , resposta.resposta[2].pontuacao ,  resposta.resposta[1].pontuacao , resposta.resposta[0].pontuacao]
-                    var labels =  [ new Date(resposta.resposta[4].diaRealizado) , new Date(resposta.resposta[3].diaRealizado) ,  new Date(resposta.resposta[2].diaRealizado), new Date(resposta.resposta[1].diaRealizado) , new Date(resposta.resposta[0].diaRealizado)]
-                    
-                    for (let index = 0; index < labels.length; index++) {
-                        labels[index] = labels[index].getDate() + "/" + (Number(labels[index].getMonth()) + 1)  + "/" + labels[index].getFullYear()
-                        
-                    }
+                    resposta.json().then(function (resposta) {
+                        console.log(resposta)
 
-                    console.log(grafico);
-                    console.log(labels);
-                    valorGrafico.data.labels = labels;  
-                    valorGrafico.data.datasets[0].data = grafico;       
-                    valorGrafico.update()
-                })
+                        var grafico = []
+                        var labels = []
+
+                        for (let i = (resposta.resposta).length - 1; i >= 0; i--) {
+                            grafico.push(resposta.resposta[i].pontuacao)
+                            labels.push(new Date(resposta.resposta[i].diaRealizado))
+                        }
+
+                        for (let index = 0; index < labels.length; index++) {
+                            labels[index] = labels[index].getDate() + "/" + (Number(labels[index].getMonth()) + 1) + "/" + labels[index].getFullYear()
+
+                        }
+
+                        console.log(grafico);
+                        console.log(labels);
+                        valorGrafico.data.labels = labels;
+                        valorGrafico.data.datasets[0].data = grafico;
+                        valorGrafico.update()
+                    })
                 });
 
-
-            // fetch("/medidas/chart2").then(res => {
-            //     // Vetores para pegar dados no banco para exibir no ChartJS;
-            //     resposta.json().then((res) => {
-            //         console.log(res)
-
-            // //         // qtdIndividual = [res.quantidade[0].AreaAtuacao, res.quantidade[1].AreaAtuacao, res.quantidade[2].AreaAtuacao]
-            // //         // console.log(qtdIndividual)
-            // //         // console.log(qtdTotal)
-            // //         // valorGrafico.data.datasets[0].data = qtdIndividual       
-            // //         // valorGrafico.update()
-            //     })
-            // })
         }
 
 
@@ -295,29 +296,29 @@
                                 spanNome.innerHTML = "<span class='color'>Autor: </span><b>" + publicacao.nome + "</b> <br>";
                                 divDescricao.innerHTML = "<span class='color'>Descrição:</span> <b>" + publicacao.descricao + "</b> <br><br>";
                                 btnDeletar.innerHTML = "Deletar";
+
+                                divPublicacao.className = "publicacao";
+                                spanTitulo.id = "inputNumero" + publicacao.idAviso;
+                                spanNome.className = "publicacao-nome";
+                                spanTitulo.className = "publicacao-titulo";
+                                divDescricao.className = "publicacao-descricao";
+
+                                divButtons.className = "div-buttons"
+
+                                btnDeletar.className = "publicacao-btn-editar"
+                                btnDeletar.id = "btnDeletar" + publicacao.idAviso;
+                                btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+
+                                divPublicacao.appendChild(spanID);
+                                divPublicacao.appendChild(spanNome);
+                                divPublicacao.appendChild(spanTitulo);
+                                divPublicacao.appendChild(divDescricao);
+                                divPublicacao.appendChild(divButtons);
+                                divButtons.appendChild(btnDeletar);
+                                feed.appendChild(divPublicacao);
                             }
 
 
-
-                            divPublicacao.className = "publicacao";
-                            spanTitulo.id = "inputNumero" + publicacao.idAviso;
-                            spanNome.className = "publicacao-nome";
-                            spanTitulo.className = "publicacao-titulo";
-                            divDescricao.className = "publicacao-descricao";
-
-                            divButtons.className = "div-buttons"
-
-                            btnDeletar.className = "publicacao-btn-editar"
-                            btnDeletar.id = "btnDeletar" + publicacao.idAviso;
-                            btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
-
-                            divPublicacao.appendChild(spanID);
-                            divPublicacao.appendChild(spanNome);
-                            divPublicacao.appendChild(spanTitulo);
-                            divPublicacao.appendChild(divDescricao);
-                            divPublicacao.appendChild(divButtons);
-                            divButtons.appendChild(btnDeletar);
-                            feed.appendChild(divPublicacao);
                         }
 
 
@@ -351,6 +352,52 @@
             sessionStorage.removeItem("NOME_USUARIO");
             sessionStorage.removeItem("EMAIL_USUARIO");
             sessionStorage.removeItem("ID_USUARIO");
+        }
+
+        function rankingAcertos() {
+            console.log("inicando função")
+
+            fetch("/usuarios/rankingAcertos").then(function (resposta) {
+                if (resposta.ok) {
+                    console.log("resposta ok")
+                    if (resposta.status == 204) {
+                        console.log("???????????????")
+                        console.log(resposta)
+                        mensagem.innerHTML = "Está muito quieto por aqui..."
+                        throw "Nenhum resultado encontrado!!";
+                    }
+
+                    resposta.json().then(function (resposta) {
+                        console.log("Dados recebidos: ", JSON.stringify(resposta));
+                        // Laço de repetição para mostrar os comentarios em ordem de mais recente no forum;
+
+                        divRankingAcertosPosicao.innerHTML += `Posição:<br><br>`;
+                        divRankingAcertosNome.innerHTML += `Nome:<br><br>`;
+                        divRankingAcertosPontuacao.innerHTML += `Pontuação:<br><br>`;
+                        divRankingAcertosData.innerHTML += `Data:<br><br>`;
+
+                        for (let i = 0; i < resposta.length; i++) {
+
+                            var data = new Date(resposta[i].dia_realizado)
+                            data = data.getDate() + "/" + (Number(data.getMonth()) + 1) + "/" + data.getFullYear()
+
+
+
+                            var publicacao = resposta[i].nome_usuario;
+                            divRankingAcertosPosicao.innerHTML += `${i + 1}°<br>`;
+                            divRankingAcertosNome.innerHTML += `${resposta[i].nome_usuario}<br>`;
+                            divRankingAcertosPontuacao.innerHTML += `${resposta[i].pontuacao}<br>`;
+                            divRankingAcertosData.innerHTML += `${data}<br>`;
+                        }
+                    });
+                } else {
+                    throw ('Houve um erro na API!');
+                }
+            }).catch(function (resposta) {
+                console.error(resposta);
+                finalizarAguardar();
+            });
+
         }
 
     </script>

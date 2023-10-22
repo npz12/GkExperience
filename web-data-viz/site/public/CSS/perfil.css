@@ -133,11 +133,50 @@ a {
     display: flex;
     height: 325px;
     width: 40%;
+    flex-direction: column;
     border: solid 2px goldenrod;
     border-radius: 30px;
-    justify-content: center;
+    justify-content: top;
+    align-items: center;
     color: goldenrod;
+    overflow-y: scroll;
 }
+
+.divTabela{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#divRankingAcertosPosicao{
+  display: flex;
+  color: #fff;
+  border-left: 2px solid goldenrod;
+  padding: 10px;
+}
+
+#divRankingAcertosNome{
+  display: flex;
+  color: #fff;
+  border-left: 2px solid goldenrod;
+  padding: 10px;
+}
+
+#divRankingAcertosPontuacao{
+  display: flex;
+  color: #fff;
+  border-left: 2px solid goldenrod;
+  padding: 10px;
+}
+
+#divRankingAcertosData{
+  display: flex;
+  color: #fff;
+  border-left: 2px solid goldenrod;
+  padding: 10px;
+}
+
 
 .divBox3 {
     display: flex;
