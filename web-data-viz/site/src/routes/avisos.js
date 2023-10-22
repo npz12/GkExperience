@@ -27,7 +27,7 @@ router.post("/postarQuiz", function (req, res) {
     avisoController.postarQuiz(req, res);
 });
 
-router.put("/editar/:idAviso", function (req, res) {
+router.put("/editar", function (req, res) {
     avisoController.editar(req, res);
 });
 

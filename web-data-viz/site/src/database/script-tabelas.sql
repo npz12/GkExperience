@@ -41,14 +41,6 @@ CREATE TABLE quizAcertos (
 	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
 );
 
-CREATE TABLE personalBest (
-	idPb INT PRIMARY KEY AUTO_INCREMENT,
-	fk_idQuizAcertos INT,
-	fk_usuarioQuizAcertos INT,
-	FOREIGN KEY (fk_idQuizAcertos) REFERENCES quizAcertos(idQuizAcertos),
-	FOREIGN KEY (fk_usuarioQuizAcertos) REFERENCES quizAcertos(fk_usuario)
-);
-
 CREATE VIEW usuariosAvisos AS
 SELECT
   usuario.nome,

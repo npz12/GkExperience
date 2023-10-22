@@ -83,10 +83,10 @@ function postarQuiz(acertos, idUsuario) {
     return database.executar(instrucao);
 }
 
-function editar(novaDescricao, idAviso) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", novaDescricao, idAviso);
+function editar(novoNome, novoEmail, idUsuario) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", novoNome, novoEmail, idUsuario);
     var instrucao = `
-        UPDATE aviso SET descricao = '${novaDescricao}' WHERE id = ${idAviso};
+        UPDATE usuario SET nome = '${novoNome}', email = '${novoEmail}' WHERE id = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

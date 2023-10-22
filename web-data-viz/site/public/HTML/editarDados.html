@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GK Experience</title>
+    <link rel="stylesheet" href="/CSS/main.css">
+    <link rel="stylesheet" href="/CSS/cadastro.css">
+    <link rel="icon" href="/imagens/icon_47d5a8d7906b25c508d00e453bbd65d0.ico" />
+</head>
+
+<body>
+
+
+    <!-- Criar div para o Header -->
+    <div class="divHeader">
+        <a href=".indexLog.html" class="aLogo"> <img
+                src="../imagens/istockphoto-1340012346-612x612-removebg-preview.png" alt="Logo" class="imgLogo"> </a>
+        <div class="divListaHeader">
+            <a href="treinosLog.html">
+                <h4 class="liAulas">Treinos</h4>
+            </a>
+            <a href="influenciasLog.html">
+                <h4 class="liTecnicas">Influencias</h4>
+            </a>
+            <a href="sobreLog.html">
+                <h4 class="liSobre">Sobre</h4>
+            </a>
+            <h4>|</h4>
+            <a href="perfil.html">
+                <h4 class="liCadastro">Perfil</h4>
+            </a>
+            <a onclick="limparSessao()" href="../index.html">
+                <h4 class="liLogin">Log-Out</h4>
+            </a>
+        </div>
+    </div>
+
+    <div class="divModal">
+        <div class="divCadastro">
+            <h4 id="h4Cadastro">Editar Dados</h4>
+            <div class="field">
+                <input type="text" required autocomplete="off" id="iptNovoNome">
+                <label for="iptEmail" title="Novo Nome:" data-title="Email:"></label>
+            </div>
+            <div class="field">
+                <input type="text" required autocomplete="off" id="iptNovoEmail">
+                <label for="iptSenha" title="Novo Email" data-title="Senha:"></label>
+            </div>
+            <button class="buttonCadastro" onclick="salvar()">Salvar</button> <br>
+        </div>
+    </div>
+
+    <div class="divFooter">
+        <div class="divLogoFooter">
+            <a href="../index.html">
+                <img src="/imagens/istockphoto-1340012346-612x612-removebg-preview.png" alt="luva"
+                    class="imgLogoFooter">
+            </a>
+        </div>
+        <div class="divColuna">
+            <div class="divListaFooter">
+                <div class="divSup">
+                    <a href="/HTML/treinos.html">
+                        <h4 class="liAulas">Treinos</h4>
+                    </a>
+                    <a href="/HTML/influencias.html">
+                        <h4 class="liTecnicas">Influencias</h4>
+                    </a>
+                    <a href="/HTML/sobre.html">
+                        <h4 class="liSobre">Sobre</h4>
+                    </a>
+                </div>
+                <div class="divSup">
+                    <a href="/HTML/login.html">
+                        <h4 class="liLogin">Log-in</h4>
+                    </a>
+                    <a href="/HTML/cadastro.html">
+                        <h4 class="liCadastro">Cadastro</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="divColuna">
+            <li class="liFooter">
+                <div>
+                    <ul>Telefone:</ul>
+                    <ul>944722626</ul>
+                </div>
+                <div>
+                    <ul>Email:</ul>
+                    <ul>nicopz2005@gmail.com</ul>
+                </div>
+            </li>
+        </div>
+        <div class="divColuna">
+            <div class="divListaFooter">
+                <div class="divSup">
+                    <div>
+                        <a href="https://instagram.com/npzanardi_?igshid=OGQ5ZDc2ODk2ZA==" target="_blank"> <img
+                                class="redesFooter" src="../imagens/606_instagram-removebg-preview.png" alt=""></a>
+                    </div>
+
+                    <div>
+                        <a href="https://github.com/npz12" target="_blank"><img class="redesFooter"
+                                src="../imagens/symbole-github-violet-removebg-preview.png" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="divSup">
+                    <div>
+                        <a href="https://www.linkedin.com/in/nicolas-zanardi-35938824b/" target="_blank"><img
+                                class="redesFooter" src="../imagens/linkedin.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    // Função ultilizando UPDATE para alterar o nome e o email
+
+    function salvar() {
+        var nome = iptNovoNome.value
+        var email = iptNovoEmail.value
+        var erro = false
+
+        if (nome == "" || email == "") {
+            alert("Por favor informe todos os dados.")
+            erro = true;
+        }
+
+        if (nome.length <= 2) {
+            alert("Informe um nome válido")
+            erro = true;
+        }
+
+        if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+            alert("Informe um email válido.")
+            erro = true;
+        }
+
+        if (erro == false) {
+            update()
+        }
+    }
+
+    function update() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+        var novoNome = iptNovoNome.value;
+        var novoEmail = iptNovoEmail.value;
+
+        var corpo = {
+            novoNomeServer: novoNome,
+            novoEmailServer: novoEmail,
+            idUsuarioServer: idUsuario
+        }
+
+        fetch(`/avisos/editar`, {
+            method: "put",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
+            console.log(corpo);
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Nome e email do usuario alterado com sucesso: Id=" + idUsuario + "!");
+                sessionStorage.EMAIL_USUARIO = novoEmail;
+                sessionStorage.NOME_USUARIO = novoNome;
+                window.location = "/HTML/perfil.html";
+            }
+
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+    }
+
+</script>

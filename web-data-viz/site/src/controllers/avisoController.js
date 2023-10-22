@@ -114,12 +114,14 @@ function postarQuiz(req, res) {
 }
 
 function editar(req, res) {
-    var novaDescricao = req.body.descricao;
-    var idAviso = req.params.idAviso;
+    var novoNome = req.body.novoNomeServer;
+    var novoEmail = req.body.novoEmailServer;
+    var idUsuario = req.body.idUsuarioServer;
 
-    avisoModel.editar(novaDescricao, idAviso)
+    avisoModel.editar(novoNome, novoEmail, idUsuario)
         .then(
             function (resultado) {
+                console.log("cheguei no model")
                 res.json(resultado);
             }
         )
