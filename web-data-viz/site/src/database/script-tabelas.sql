@@ -56,19 +56,12 @@ FROM
 
 CREATE VIEW rankingAcertos AS
 SELECT
-  usuario.nome AS nome_usuario,
-  quizAcertos.pontuacao AS pontuacao,
-  quizAcertos.diaRealizado AS dia_realizado
+	usuario.nome,
+	quizAcertos.pontuacao , 
+	quizAcertos.diaRealizado
 FROM
-  quizAcertos
-INNER JOIN
-  personalBest
-ON
-  quizAcertos.idQuizAcertos = personalBest.fk_idQuizAcertos
-INNER JOIN
-  usuario
-ON
-  quizAcertos.fk_usuario = usuario.id
+	quizAcertos
+INNER JOIN usuario ON quizAcertos.fkQuizAcertos = usuario.id
 ORDER BY
-  pontuacao DESC;
+	quizAcertos.pontuacao DESC;
 
